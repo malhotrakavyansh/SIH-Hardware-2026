@@ -1,0 +1,13 @@
+# Python 3.11 or 3.12. TensorFlow has no wheels for 3.14 (the interpreter
+# currently on this machine) -- create the venv with an older interpreter:
+#   py -3.11 -m venv .venv
+#
+# Step 1 needs nothing installed; config.py and verify_step1.py are stdlib
+# only. The rest is pinned loosely until Step 2 fixes the front end.
+
+numpy>=1.26,<2.0
+scipy>=1.11
+soundfile>=0.12
+tensorflow>=2.15,<2.17
+matplotlib>=3.8          # DET curves in eval_streaming.py
+tqdm>=4.66

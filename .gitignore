@@ -1,0 +1,24 @@
+# audio corpora -- never in git
+kws/data/**
+!kws/data/**/
+!kws/data/**/README.md
+!kws/data/**/.gitkeep
+
+# training output
+kws/artifacts/
+*.tflite
+*.h5
+*.keras
+*.ckpt*
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# os
+Thumbs.db
+desktop.ini
+.DS_Store
