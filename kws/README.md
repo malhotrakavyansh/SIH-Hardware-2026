@@ -13,14 +13,17 @@ be run against a front end it wasn't trained on.
 ```
 kws/
 ├── config.py          # SINGLE source of truth
-├── features.py        # MFCC extraction              (Step 2)
-├── dataset.py         # loading, splitting, augmentation (Step 3)
-├── model.py           # DS-CNN-S                     (Step 4)
-├── train.py           #                              (Step 5)
-├── quantize.py        # int8 PTQ                     (Step 6)
-├── eval_streaming.py  # DET curve on continuous audio (Step 7)
-├── export_c.py        # mel filterbank + model as C arrays (Step 8)
-├── verify_step1.py    # enforces the Step 1 criterion
+├── features.py        # MFCC extraction                     (Step 2, done)
+├── export_c.py        # feature tables + model as C arrays  (Step 2 half done)
+├── make_test_vectors.py  # 3 synthetic clips -> wav + C input + ref MFCC
+├── check_parity.py       # diffs a firmware MFCC dump against the reference
+├── dataset.py          # loading, splitting, augmentation   (Step 3)
+├── model.py            # DS-CNN-S                           (Step 4)
+├── train.py            #                                    (Step 5)
+├── quantize.py         # int8 PTQ                           (Step 6)
+├── eval_streaming.py   # DET curve on continuous audio      (Step 7)
+├── verify_step1.py     # enforces the Step 1 criterion
+├── test_vectors/       # generated -- see make_test_vectors.py
 └── data/
     ├── positives/     # your recordings of the wake word
     ├── hard_neg/      # confusable words
@@ -36,17 +39,50 @@ in what format.
 | Step | What | State |
 |------|------|-------|
 | 1 | Repo + frozen config | **done** |
-| 2 | MFCC front end, Python↔C parity | not started |
+| 2 | MFCC front end, Python↔C parity | **Python side done** — waiting on firmware dump to run the actual parity check |
 | 3 | Dataset, splits, augmentation | not started |
 | 4 | DS-CNN-S | not started |
 | 5 | Float training | not started |
 | 6 | int8 quantization | not started |
 | 7 | Streaming DET evaluation | not started |
-| 8 | C export | not started |
+| 8 | C export (model) | not started |
 
-Steps 2–8 exist as modules with fixed signatures, docstrings that pin down
+Steps 3–8 exist as modules with fixed signatures, docstrings that pin down
 every tensor shape, and `NotImplementedError("Step N")` bodies. Nothing to
 redesign later — just fill them in.
+
+## Step 2 — feature extractor + C parity
+
+`features.py` implements the MFCC front end as explicit array ops (framing,
+Hann window, FFT, mel filterbank, log, DCT-II) — no `librosa.mfcc()` call
+whose padding/normalization defaults you can't inspect. Everything after the
+FFT is two fixed matrices (`build_mel_filterbank()`, `build_dct_matrix()`)
+that depend only on `config`, never on audio — so the firmware never
+re-derives a mel scale on the MCU, it just does a matmul against Python's own
+numbers.
+
+```bash
+python kws/features.py          # self-test: shapes, DCT orthonormality, finite output
+python kws/export_c.py          # writes artifacts/export/kws_mel_filterbank.h
+python kws/make_test_vectors.py # writes test_vectors/: 3 clips, wav + C input + ref MFCC
+```
+
+Two things a firmware port has to match exactly (see `features.py`'s module
+docstring for why): the **symmetric** Hann window (`N-1` denominator, not
+periodic `N`), and **unnormalized** `|FFT|^2` (no `1/N` scaling).
+
+**Running the actual parity test** (once the firmware side has an MFCC
+extractor to test): feed `test_vectors/<clip>_input.h` in as a hardcoded C
+array — never through a mic/speaker for this check, so a failure can only be
+a math bug — print the firmware's `(49, 10)` output over serial, then:
+
+```bash
+python kws/check_parity.py tone_440hz  path/to/esp32_dump.csv
+python kws/check_parity.py silence     path/to/esp32_dump.csv
+python kws/check_parity.py white_noise path/to/esp32_dump.csv
+```
+
+Done when all 3 print `PASS` (max abs diff < 0.05). This unblocks Steps 3–8.
 
 ## Running
 
