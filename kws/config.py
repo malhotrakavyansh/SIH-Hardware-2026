@@ -60,7 +60,8 @@ LABEL_TO_INDEX = {name: i for i, name in enumerate(LABELS)}
 # The wake word being spotted. Routes data/ and is part of the frozen
 # contract, so setting it changes FEATURE_CONTRACT_HASH -- pick it before you
 # record positives, not after.
-KEYWORD = "wakeword"      # TODO: set the actual wake word (Step 3 blocker)
+KEYWORD      = "nakshatra"
+KEYWORD_ARPA = "N AH K SH AA T R AH"   # ARPAbet pronunciation, for reference
 
 # =============================================================================
 # FROZEN -- derived sample counts (never hand-type these anywhere else)
@@ -92,8 +93,7 @@ DSCNN_CONV_STRIDE  = (2, 2)
 DSCNN_DW_KERNEL    = (3, 3)     # depthwise separable blocks
 DSCNN_DW_STRIDE    = (1, 1)
 DSCNN_DROPOUT      = 0.2
-BN_MOMENTUM        = 0.99
-BN_EPSILON         = 1e-3
+BN_EPSILON         = 1e-3      # affects the exported inference math -- frozen
 
 # =============================================================================
 # FROZEN -- feature contract hash
@@ -123,6 +123,7 @@ _FROZEN_CONTRACT = (
     ("DITHER", DITHER),
     ("LABELS", tuple(LABELS)),
     ("KEYWORD", KEYWORD),
+    ("KEYWORD_ARPA", KEYWORD_ARPA),
     ("HOP_MS", HOP_MS),
     ("DSCNN_CHANNELS", DSCNN_CHANNELS),
     ("DSCNN_NUM_BLOCKS", DSCNN_NUM_BLOCKS),
@@ -130,7 +131,6 @@ _FROZEN_CONTRACT = (
     ("DSCNN_CONV_STRIDE", DSCNN_CONV_STRIDE),
     ("DSCNN_DW_KERNEL", DSCNN_DW_KERNEL),
     ("DSCNN_DW_STRIDE", DSCNN_DW_STRIDE),
-    ("BN_MOMENTUM", BN_MOMENTUM),
     ("BN_EPSILON", BN_EPSILON),
 )
 
@@ -170,7 +170,11 @@ REVERB_PROB           = 0.0     # off until an RIR set is in data/background/
 # =============================================================================
 
 SEED             = 1337
-BATCH_SIZE       = 64
+# 16, not 64: with ~111 train samples, batch 64 gave 1 step/epoch (with
+# drop_remainder=True) which starved BatchNorm's moving-average updates.
+# 16 gives ~7 steps/epoch -- see BN_MOMENTUM below for the other half of
+# this fix.
+BATCH_SIZE       = 16
 EPOCHS           = 60
 LEARNING_RATE    = 1e-3
 LR_DECAY_EPOCHS  = (30, 45)     # step LR down at these epoch boundaries
@@ -178,6 +182,26 @@ LR_DECAY_FACTOR  = 0.1
 WEIGHT_DECAY     = 1e-5
 LABEL_SMOOTHING  = 0.05
 EARLY_STOP_PATIENCE = 12
+
+# BN's moving-average update rate. Time constant is ~1/(1-momentum) updates
+# to converge; 0.99 needs ~100 updates, which our small single-speaker
+# dataset (~7 steps/epoch) doesn't reach before a reasonable epoch budget.
+# 0.9 converges in ~10 updates instead. This is training-time only -- it
+# does not appear in the exported graph, so it stays out of the frozen
+# contract above.
+BN_MOMENTUM      = 0.9
+
+# Up-weights the keyword class in the training loss. Keyword is rare
+# relative to unknown/silence in real streaming audio, so without this the
+# model biases toward always predicting "unknown".
+KEYWORD_CLASS_WEIGHT = 3.0
+
+# Up-weights the unknown class. Added after introducing the silence class
+# diluted the keyword/unknown decision boundary (confusable-word rejection
+# dropped from 75% to 45% TNR) -- unknown now has to compete with silence for
+# training signal on top of already being outnumbered by keyword, and it's
+# the class that determines false-activation rejection on confusable words.
+UNKNOWN_CLASS_WEIGHT = 2.0
 
 # =============================================================================
 # TUNABLE -- quantization
@@ -272,7 +296,7 @@ def summary() -> str:
         "KWS frozen configuration",
         "------------------------",
         f"  contract   : {FEATURE_CONTRACT_HASH}",
-        f"  keyword    : {KEYWORD!r}",
+        f"  keyword    : {KEYWORD!r} ({KEYWORD_ARPA})",
         f"  audio      : {SAMPLE_RATE} Hz mono, {CLIP_MS} ms clips"
         f" ({CLIP_SAMPLES} samples)",
         f"  framing    : {FRAME_MS} ms / {STRIDE_MS} ms hop ->"

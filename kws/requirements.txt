@@ -11,3 +11,4 @@ soundfile>=0.12
 tensorflow>=2.15,<2.17
 matplotlib>=3.8          # DET curves in eval_streaming.py
 tqdm>=4.66
+scikit-learn>=1.3        # classification_report / confusion_matrix in train.py
