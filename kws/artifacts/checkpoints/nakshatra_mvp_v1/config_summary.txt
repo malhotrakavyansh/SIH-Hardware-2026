@@ -1,0 +1,12 @@
+KWS frozen configuration
+------------------------
+  contract   : eaec172cd4689c14
+  keyword    : 'nakshatra' (N AH K SH AA T R AH)
+  audio      : 16000 Hz mono, 1000 ms clips (16000 samples)
+  framing    : 40 ms / 20 ms hop -> 640 / 320 samples, 49 frames
+  fft        : 1024 pt (513 bins), frames zero-padded 640 -> 1024
+  mel        : 40 bands, 20-4000 Hz
+  features   : (49, 10) = 490 values (1.91 KiB f32, 0.48 KiB int8)
+  labels     : ['silence', 'unknown', 'keyword']
+  streaming  : 100 ms hop = 1600 samples = 5 new frames/hop
+  detection  : smooth 300 ms (3 hops), refractory 1000 ms, thr 0.5

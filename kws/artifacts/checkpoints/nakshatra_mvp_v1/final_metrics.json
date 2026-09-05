@@ -1,0 +1,81 @@
+{
+  "run_name": "nakshatra_mvp_v1",
+  "feature_contract_hash": "eaec172cd4689c14",
+  "eval_audio": {
+    "background_seconds": 901.6,
+    "background_composition": "real ambient recording + synthetic noise/silence",
+    "positives_seconds": 142.0,
+    "num_keyword_occurrences": 125,
+    "num_hardneg_utterances": 20
+  },
+  "operating_point": {
+    "threshold": 0.95,
+    "k": 3,
+    "window": 3,
+    "refractory_hops": 15,
+    "FAR_ambient_per_hour": 15.972366696423057,
+    "FAR_gauntlet_per_utterance": 1.2,
+    "FRR": 0.592,
+    "TPR": 0.40800000000000003,
+    "added_latency_ms": 100.0
+  },
+  "k_window_sweep": [
+    {
+      "k": 1,
+      "window": 1,
+      "FAR_ambient_per_hour": 31.944733392846114,
+      "FAR_gauntlet_per_utterance": 0.7,
+      "FRR": 0.472,
+      "added_latency_ms": 0.0
+    },
+    {
+      "k": 1,
+      "window": 3,
+      "FAR_ambient_per_hour": 31.944733392846114,
+      "FAR_gauntlet_per_utterance": 1.0,
+      "FRR": 0.504,
+      "added_latency_ms": 100.0
+    },
+    {
+      "k": 1,
+      "window": 5,
+      "FAR_ambient_per_hour": 31.944733392846114,
+      "FAR_gauntlet_per_utterance": 1.05,
+      "FRR": 0.504,
+      "added_latency_ms": 200.0
+    },
+    {
+      "k": 2,
+      "window": 3,
+      "FAR_ambient_per_hour": 27.951641718740348,
+      "FAR_gauntlet_per_utterance": 0.85,
+      "FRR": 0.496,
+      "added_latency_ms": 100.0
+    },
+    {
+      "k": 2,
+      "window": 5,
+      "FAR_ambient_per_hour": 27.951641718740348,
+      "FAR_gauntlet_per_utterance": 0.85,
+      "FRR": 0.488,
+      "added_latency_ms": 200.0
+    },
+    {
+      "k": 3,
+      "window": 3,
+      "FAR_ambient_per_hour": 15.972366696423057,
+      "FAR_gauntlet_per_utterance": 1.2,
+      "FRR": 0.592,
+      "added_latency_ms": 100.0
+    },
+    {
+      "k": 3,
+      "window": 5,
+      "FAR_ambient_per_hour": 19.96545837052882,
+      "FAR_gauntlet_per_utterance": 0.9,
+      "FRR": 0.504,
+      "added_latency_ms": 200.0
+    }
+  ],
+  "det_curve_path": "C:\\Users\\harsh\\Downloads\\SIH-Hardware-2026-master\\SIH-Hardware-2026\\kws\\artifacts\\checkpoints\\nakshatra_mvp_v1\\det_curve.png"
+}

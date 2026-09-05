@@ -1,0 +1,28 @@
+{
+  "input": {
+    "scale": 0.3678809702396393,
+    "zero_point": 110,
+    "dtype": "int8",
+    "shape": [
+      1,
+      49,
+      10,
+      1
+    ]
+  },
+  "output": {
+    "scale": 0.026061659678816795,
+    "zero_point": -20,
+    "dtype": "int8",
+    "shape": [
+      1,
+      3
+    ]
+  },
+  "labels": [
+    "silence",
+    "unknown",
+    "keyword"
+  ],
+  "feature_contract_hash": "eaec172cd4689c14"
+}
