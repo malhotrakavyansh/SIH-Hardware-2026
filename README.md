@@ -95,7 +95,7 @@ See [submission/PRESENTATION.md](submission/PRESENTATION.md).
 
 ## 9. Demo Video
 
-See [submission/DEMO.md](submission/DEMO.md).
+https://drive.google.com/file/d/1tqMdxe8ggIA9zw597XZJY_jYMLwZ_UYe/view?usp=drivesdk
 
 
 
