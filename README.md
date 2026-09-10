@@ -2,16 +2,19 @@
 
 ## 1. Project Information
 
-- **Project Title:** [TODO: fill — official project/product name]
-- **PS ID:** [TODO: fill]
-- **PS Title:** [TODO: fill]
+- **Project Title:** Nakshatra  
+- **PS ID:** SIH26172
+- **PS Title:** Low Latency and Efficient Voice Activator for Edge Devices
 - **Category:** Hardware
-- **Theme:** [TODO: fill]
-- **Team Members & Roles:** [TODO: fill — name, role, for each team member]
+- **Theme:** Smart Automation
+- **Team Members & Roles:** Radhika Chopra-Embedded ,Shireen Sandilya-Embedded,Ansh Jayara-Embedded,Kavyansh Malhotra-ML, Anmol Garg-Embedded/Cloud,Harshit Sharma-Cloud/ML
 
 ## 2. Problem Statement
 
-[TODO: fill — the problem this project addresses]
+ As voice-controlled IoT proliferate, processing everything in the cloud is too costly, privacy-invasive, and slow. The future belongs to hybrid architectures where the edge handles the initial 'wake-up' and the cloud handles the heavy lifting.
+
+Description Build an ultra-lightweight, highly accurate keyword spotting (KWS) model that runs locally on a low-power device. Upon detecting the keyword, the system must instantly and efficiently stream the subsequent audio to a remote Automated Speech Recognition (ASR) server with minimal data overhead and latency.
+
 
 ## 3. Proposed Solution
 
@@ -94,11 +97,9 @@ See [submission/PRESENTATION.md](submission/PRESENTATION.md).
 
 See [submission/DEMO.md](submission/DEMO.md).
 
-## 10. Screenshots / Prototype Photos
 
-See [assets/screenshots/](assets/screenshots/).
 
-## 11. Installation
+## 10. Installation
 
 ```bash
 git clone <YOUR_REPOSITORY_URL>
@@ -108,7 +109,7 @@ py -3.11 -m venv .venv
 pip install -r requirements.txt
 ```
 
-## 12. Run
+## 11. Run
 
 ```bash
 # Step 1 sanity check (stdlib-only)
@@ -124,7 +125,7 @@ python src/live_demo.py
 See [src/kws/README.md](src/kws/README.md) for the full ML pipeline
 walkthrough (steps 1–8).
 
-## 13. Future Scope
+## 12. Future Scope
 
 [TODO: fill — realistic next steps / extensions]
 
