@@ -1,11 +1,11 @@
 # audio corpora -- never in git
-kws/data/**
-!kws/data/**/
-!kws/data/**/README.md
-!kws/data/**/.gitkeep
+src/kws/data/**
+!src/kws/data/**/
+!src/kws/data/**/README.md
+!src/kws/data/**/.gitkeep
 
 # training output
-kws/artifacts/
+src/kws/artifacts/
 *.tflite
 *.h5
 *.keras
@@ -22,3 +22,6 @@ venv/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# migration scratch (reference only, not for repo)
+SIH_TEMPLATE_STRUCTURE.txt
