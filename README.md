@@ -125,12 +125,3 @@ python src/live_demo.py
 See [src/kws/README.md](src/kws/README.md) for the full ML pipeline
 walkthrough (steps 1–8).
 
-## 12. Future Scope
-
-[TODO: fill — realistic next steps / extensions]
-
-## Important
-
-Before submission, make sure the repository is accessible to reviewers. Do
-**not** upload passwords, API keys, access tokens, `.env` files containing
-secrets, or other confidential credentials.
