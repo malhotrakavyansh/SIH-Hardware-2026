@@ -11,9 +11,10 @@
 
 ## 2. Problem Statement
 
- As voice-controlled IoT proliferate, processing everything in the cloud is too costly, privacy-invasive, and slow. The future belongs to hybrid architectures where the edge handles the initial 'wake-up' and the cloud handles the heavy lifting.
+As voice-controlled IoT proliferate, processing everything in the cloud is too costly, privacy-invasive, and slow. The future belongs to hybrid architectures where the edge handles the initial 'wake-up' and the cloud handles the heavy lifting.
 
-Description Build an ultra-lightweight, highly accurate keyword spotting (KWS) model that runs locally on a low-power device. Upon detecting the keyword, the system must instantly and efficiently stream the subsequent audio to a remote Automated Speech Recognition (ASR) server with minimal data overhead and latency.
+## Description 
+Build an ultra-lightweight, highly accurate keyword spotting (KWS) model that runs locally on a low-power device. Upon detecting the keyword, the system must instantly and efficiently stream the subsequent audio to a remote Automated Speech Recognition (ASR) server with minimal data overhead and latency.
 
 
 ## 3. Proposed Solution
@@ -31,7 +32,6 @@ the full pipeline.
 - Streaming evaluation (DET curve, k-of-window smoothing, refractory logic)
 - `src/live_demo.py` — real-time microphone demo with configurable
   threshold/k/window
-- [TODO: fill in any hardware-specific features — sensors, enclosure, etc.]
 
 ## 5. Technology Stack
 
