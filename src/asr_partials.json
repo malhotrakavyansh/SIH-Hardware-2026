@@ -1,0 +1,1538 @@
+[
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about added"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "advil"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tell me about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "editing"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "gumi"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "to"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "doesn't mean about additives"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "advil"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about channel on"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "chandra"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dummy about in rome"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "come here about random"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "children"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dammit"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "dammit about adnan"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "dad"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "don't mean about that"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "that"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "though"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "they don't"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "don't need about dead"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "get"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "dummy about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "michael around"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tommy about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "mandarin"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "men"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "don't mean about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "mendel upon"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "damage"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "marry"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "damn need about nothing"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "nardi"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "me"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "murray"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dammit"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "nah"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about a survey"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "we deserve it"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "damn me about three dozen"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "he does"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "come about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "sorry"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "tell me about t v"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "disagree"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "and"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "me about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "me"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about [unk]"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "me about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "me moon"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "nasa"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "about [unk]"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "me about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "me about"
+ },
+ {
+  "model": "vosk-model-small-en-in-0.4",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "word",
+  "text": ""
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about up"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "atal"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dub me about it either"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "editing"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "guv above added river"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "editing"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dilma is about additive"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "at the gym"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "chandra"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dummy about syndrome"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "them"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "come about gender"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "chandigarh"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dummy a bottom drawer"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "gunday on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "me about on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "dad and gone"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dog made about that and more"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "the dna home"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "though above"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "did anyone"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "do need about"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "get"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "dummy mean about eleven"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "metal around"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tell me about mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "monday"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "their nice about mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dull mean a bass mandolin"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "mandala on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "the mayor's abid nabi"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "maddy"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tum need about that"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "nah de"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "though maybe"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "mcg"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "doesnt mean about"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "nah"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about penis survey"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "pizza v"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "gummi about three days a week"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "we disagree"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "comey you about v"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "do you disagree"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "tell me about the survey"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "free",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "p salvi"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about additive"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "atal"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tub me about it either"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "editing"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "guv above added river"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "editing"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dilma is about additive"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "aditya",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "at the gym"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "chandra"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dummy about syndrome"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "chun them"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "come about gender"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "chandigarh"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dummy a bottom drawer"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "chandrayaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "gunday on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "me about adenine on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "and gone"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "dog made about that and more"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "the dna home"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "though above"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "did anyone"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "do need about"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "gaganyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "get"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "dummy mean about eleven"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "metal around"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tell me about mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "monday"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "their nice about mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "mangalore"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "dull mean a bass mandolin"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "mangalyaan",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "mandala on"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "the mayor's abid nabi"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "maddy"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "tum need about that"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "nah de"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "though maybe"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "mcg"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "doesnt mean about"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "navic",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "nah"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "sent",
+  "text": "tell me about penis survey"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "ASI",
+  "kind": "word",
+  "text": "pizza v"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "sent",
+  "text": "gummi about three days a week"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "RRBI",
+  "kind": "word",
+  "text": "we disagree"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "sent",
+  "text": "comey you about p"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "SVBI",
+  "kind": "word",
+  "text": "do you disagree"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "sent",
+  "text": "tell me about the survey"
+ },
+ {
+  "model": "vosk-model-en-in-0.5",
+  "mode": "biased",
+  "word": "pslv",
+  "spk": "TNI",
+  "kind": "word",
+  "text": "p salvi"
+ }
+]
