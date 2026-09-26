@@ -1,0 +1,3 @@
+# The firmware handoff bundle is checksummed (firmware_handoff/SHA256SUMS.txt): store and check
+# out its files byte-for-byte, no line-ending conversion, on every platform.
+firmware_handoff/** -text
