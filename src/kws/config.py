@@ -46,6 +46,17 @@ WINDOW        = "hann"    # analysis window; must match the C implementation
 LOG_MEL_FLOOR = 1e-6      # added before log() to avoid log(0)
 DITHER        = 0.0       # no dither: must be bit-reproducible against C
 
+# Deferred idea -- level invariance (revisit AFTER the ESP32 firmware port).
+# The front end has no level normalisation: input gain shifts MFCC c0 only
+# (~+7.3 per +6 dB); c1..c9 are unaffected. Candidate fix: subtract the
+# per-window mean of c0 (log-domain cepstral mean normalisation) before the
+# model. Preferred over RMS-normalising each 1 s window, which would scale a
+# gated / near-silent room up to speech level and destroy the silence class's
+# energy cue, and whose gain jumps hop-to-hop as the word enters/leaves the
+# window. Either one is a FROZEN contract change (Python + C, new hash, retrain
+# every checkpoint), so until then level robustness comes from GAIN_DB_RANGE
+# augmentation instead.
+
 # =============================================================================
 # FROZEN -- label space
 # =============================================================================
@@ -150,7 +161,62 @@ TESTING_PERCENT     = 10.0
 
 # Class mix per training epoch, as a fraction of the number of keyword clips.
 SILENCE_PERCENT = 10.0
-UNKNOWN_PERCENT = 10.0
+# Was 10.0, tuned back when the only unknown data was 20 hard negatives from
+# one speaker. With GSC now supplying a ~106K-clip unknown pool, 10% meant an
+# unknown:keyword ratio of ~1:10 in training (10 unknown vs 103 keyword) --
+# the model had almost no exposure to "not the keyword". 1000% gives ~10:1
+# unknown:keyword in every split (train 1030:103, val 100:10, test 120:12 at
+# the current 125-positive manifest) -- in line with typical wake-word
+# negative:positive ratios, without the per-epoch sample count (and dataset
+# load/MFCC cost) exploding. See UNKNOWN_CLASS_WEIGHT below for how this
+# interacts with the loss.
+UNKNOWN_PERCENT = 1000.0
+
+# Fraction of each split's unknown quota that must come from hard_neg
+# (confusable Hindi words phonetically close to the keyword), the rest from
+# GSC. Added after nakshatra_v2_gsc: raising UNKNOWN_PERCENT alone let
+# make_splits() draw the unknown quota uniformly at random from the combined
+# hard_neg+GSC pool. hard_neg is 20 of ~106K unknowns (0.019%), so a uniform
+# draw statistically yields zero hard_neg samples -- confirmed v2's training
+# set contained none, and hard-neg TNR collapsed from 85% (v1) to 15%. Every
+# hard_neg sample is now always included and oversampled (repeated, each
+# repetition re-augmented independently) up to this share of the quota,
+# rather than left to chance against a pool 5000x its size.
+HARD_NEG_SHARE = 0.25
+
+# =============================================================================
+# TUNABLE -- data sources
+# =============================================================================
+
+# New demo-chain recordings (record_session.py: sounddevice, gated, ~-87 dBFS
+# floor), read from data/recordings/{positive,hardneg,ambient}. Session id
+# "test" is the held-out set: always routed to the test split, never trained on.
+USE_RECORDINGS = True
+
+# Legacy Audacity-chain data (data/positives, data/hard_neg; -39.5 dBFS floor,
+# no gating). Mixing capture chains is what caused the v2 trouble, so OFF by
+# default. Turn on only to compare "with vs without" runs.
+USE_LEGACY_DATA = False
+HELDOUT_SESSION = "test"
+
+# Re-trimmed takes (trim_takes.py) replace the raw takes for training sessions;
+# the held-out session is always read raw.
+USE_TRIMMED = True
+
+# Explicit session -> split assignment for our own recordings (auditable; not
+# hashed). Any recording session not listed trains. GSC speakers still hash.
+SESSION_SPLIT = {
+    "test": "test",   # held-out set: never trained on, never tuned on
+    "s03": "val",     # laptop positives, 2 m facing
+    "s12": "val",     # laptop hard negatives, 30 cm
+    "a04": "val",     # laptop talking-no-keyword windows
+}
+
+# "talking no keyword" ambient (a03/a04/a06) cut into 1 s windows -> unknown.
+USE_TALKING_UNKNOWN = True
+TALKING_HOP_MS = 500         # 50% overlap: the talking recordings are mostly pauses
+TALKING_MIN_DBFS = -55.0     # quieter windows are pauses, not speech negatives
+TALKING_SHARE = 0.15         # fraction of each split's unknown quota (oversampled to reach it)
 
 # =============================================================================
 # TUNABLE -- augmentation
@@ -214,8 +280,9 @@ REPRESENTATIVE_SAMPLES = 500    # clips drawn from train for the calibrator
 # TUNABLE -- streaming detection policy
 # =============================================================================
 
-SMOOTH_WINDOW_MS   = 300        # posterior smoothing window (Chen et al.)
-DETECT_THRESHOLD   = 0.5        # operating point; sweep this to draw the DET
+SMOOTH_WINDOW_MS   = 500        # posterior smoothing window (Chen et al.) = 5 hops
+DETECT_THRESHOLD   = 0.75       # nakshatra_v5 operating point (eval_heldout: theta 0.75, k 3 of 5)
+DETECT_K           = 3          # fire when >= K of the SMOOTH_WINDOW_HOPS posteriors exceed threshold
 REFRACTORY_MS      = 1000       # suppress re-fires inside this window
 DET_THRESHOLD_GRID = 101        # points on the DET curve
 
@@ -233,6 +300,9 @@ POSITIVES_DIR  = DATA_DIR / "positives"
 HARD_NEG_DIR   = DATA_DIR / "hard_neg"
 GSC_DIR        = DATA_DIR / "gsc"
 BACKGROUND_DIR = DATA_DIR / "background"
+RECORDINGS_DIR = DATA_DIR / "recordings"
+TRIMMED_DIR    = DATA_DIR / "recordings_trimmed"
+TALKING_DIR    = DATA_DIR / "recordings_derived" / "talking"
 
 ARTIFACTS_DIR  = ROOT / "artifacts"
 CHECKPOINT_DIR = ARTIFACTS_DIR / "checkpoints"
@@ -284,6 +354,7 @@ def _validate() -> None:
     assert REFRACTORY_MS % HOP_MS == 0, (REFRACTORY_MS, HOP_MS)
 
     assert 0.0 <= DETECT_THRESHOLD <= 1.0, DETECT_THRESHOLD
+    assert 1 <= DETECT_K <= SMOOTH_WINDOW_HOPS, (DETECT_K, SMOOTH_WINDOW_HOPS)
     assert VALIDATION_PERCENT + TESTING_PERCENT < 100.0
 
 
@@ -312,7 +383,7 @@ def summary() -> str:
         f" = {HOP_FRAMES} new frames/hop",
         f"  detection  : smooth {SMOOTH_WINDOW_MS} ms"
         f" ({SMOOTH_WINDOW_HOPS} hops), refractory {REFRACTORY_MS} ms,"
-        f" thr {DETECT_THRESHOLD}",
+        f" thr {DETECT_THRESHOLD}, k {DETECT_K}/{SMOOTH_WINDOW_HOPS}",
     ])
 
 

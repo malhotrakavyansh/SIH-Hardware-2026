@@ -11,6 +11,7 @@ Implemented in Step 6.
 
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
 import tempfile
@@ -25,6 +26,13 @@ import dataset
 import features
 
 RUN_NAME = "nakshatra_mvp_v1"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Post-training INT8 quantization.")
+    parser.add_argument("--run-name", type=str, default=RUN_NAME,
+                         help="checkpoint subfolder under config.CHECKPOINT_DIR (default: %(default)s)")
+    return parser.parse_args()
 
 
 def _softmax(logits: np.ndarray) -> np.ndarray:
@@ -56,10 +64,13 @@ def build_representative_dataset(
     generator) each time it needs a fresh pass, so re-invoking reproduces the
     same config.SEED-seeded sample selection.
     """
-    files = (
-        sorted(config.POSITIVES_DIR.glob("*.wav"))
-        + sorted(config.HARD_NEG_DIR.glob("*.wav"))
-    )
+    # Our own recordings from the *train* split only (never the held-out
+    # session): keyword + hard_neg + talking, as build_manifest() resolves them.
+    train_own = [
+        s.path for s in dataset.make_splits(dataset.build_manifest())["train"]
+        if s.source in ("positives", "hard_neg", "talking")
+    ]
+    files = sorted(set(train_own))
     rng = np.random.default_rng(config.SEED)
     n = min(num_samples, len(files))
     chosen = [files[i] for i in sorted(rng.choice(len(files), size=n, replace=False))]
@@ -300,9 +311,10 @@ def _evaluate_keras(model, positives_dir: Path, hardneg_dir: Path) -> dict:
 
 
 def main() -> None:
+    args = parse_args()
     print(config.summary())
 
-    checkpoint_dir = config.CHECKPOINT_DIR / RUN_NAME
+    checkpoint_dir = config.CHECKPOINT_DIR / args.run_name
     float_path = checkpoint_dir / "float.keras"
     out_dir = checkpoint_dir
 
