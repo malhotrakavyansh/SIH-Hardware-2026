@@ -4,6 +4,15 @@ src/kws/data/**
 !src/kws/data/**/README.md
 !src/kws/data/**/.gitkeep
 
+# ...except the maintainer's OWN recordings (raw takes). Public GSC and anything a
+# script regenerates (recordings_trimmed/, recordings_derived/, synthetic background)
+# stay out.
+!src/kws/data/recordings/**
+!src/kws/data/raw_sessions/**
+!src/kws/data/positives/**
+!src/kws/data/hard_neg/**
+!src/kws/data/background/background_ambient_*.wav
+
 # training output
 src/kws/artifacts/
 *.tflite
@@ -11,10 +20,18 @@ src/kws/artifacts/
 *.keras
 *.ckpt*
 
+# the firmware handoff bundle ships its model on purpose
+!firmware_handoff/**
+
+# downloaded ASR model weights -- never in git
+src/models/**
+!src/models/**/
+!src/models/**/README.md
+
 # python
 __pycache__/
 *.py[cod]
-.venv/
+.venv*/
 venv/
 .ipynb_checkpoints/
 
