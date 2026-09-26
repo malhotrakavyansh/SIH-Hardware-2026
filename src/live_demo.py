@@ -49,7 +49,7 @@ import features  # noqa: E402  (kws/features.py)
 
 import tensorflow as tf  # noqa: E402
 
-RUN_NAME = "nakshatra_mvp_v1"
+RUN_NAME = "nakshatra_v5"
 CHECKPOINT_DIR = KWS_DIR / "artifacts" / "checkpoints" / RUN_NAME
 MODEL_PATH = CHECKPOINT_DIR / "model_int8.tflite"
 QUANT_PARAMS_PATH = CHECKPOINT_DIR / "quant_params.json"
@@ -82,7 +82,8 @@ def load_operating_point(cli_overrides: dict | None = None) -> tuple[dict, str]:
     (op, source) where source is one of "CLI", "final_metrics.json", or
     "hardcoded defaults", for display in the startup banner.
     """
-    defaults = {"threshold": 0.75, "k": 2, "window": 3, "refractory_hops": 15}
+    defaults = {"threshold": config.DETECT_THRESHOLD, "k": config.DETECT_K,
+                "window": config.SMOOTH_WINDOW_HOPS, "refractory_hops": config.REFRACTORY_HOPS}
     cli_overrides = cli_overrides or {}
 
     if any(v is not None for v in cli_overrides.values()):

@@ -1,0 +1,181 @@
+{
+ "run": "nakshatra_v5",
+ "feature_contract_hash": "eaec172cd4689c14",
+ "model_bytes": 44832,
+ "input": {
+  "scale": 0.44825276732444763,
+  "zero_point": 67
+ },
+ "output": {
+  "scale": 0.1457945853471756,
+  "zero_point": 2
+ },
+ "detection": {
+  "theta": 0.75,
+  "k": 3,
+  "window_hops": 5,
+  "hop_ms": 100,
+  "refractory_ms": 1000
+ },
+ "parity_mfcc_tolerance": 0.05,
+ "vectors": {
+  "silence": {
+   "exercises": "all zeros: every mel bin is exactly the log floor, log(1e-6)",
+   "input_sha256": "0c92bddb4e96f3ea9ec9f0f64a668255a6c15527ac09f6f119cafde60c7c4a39",
+   "mfcc_min": -87.37696075439453,
+   "mfcc_max": 1.7763568394002505e-14,
+   "model_out_q": [
+    23,
+    16,
+    -28
+   ],
+   "keyword_prob": 0.0004334515251684934
+  },
+  "tone_440hz": {
+   "exercises": "pure tone, amplitude 0.5: peaky spectrum, window/FFT scaling",
+   "input_sha256": "e06710b9832575f7f86c25ef0308514cdb20c5ddd479463f06527b652fd63e83",
+   "mfcc_min": -68.65009307861328,
+   "mfcc_max": 17.887168884277344,
+   "model_out_q": [
+    -16,
+    88,
+    -61
+   ],
+   "keyword_prob": 3.678327364919909e-10
+  },
+  "white_noise": {
+   "exercises": "uniform noise +-0.2 FS: flat spectrum, filterbank gains",
+   "input_sha256": "cac7fb159d4e4309f244e3d05f408ed86a6824b39bffeae59a16c805eb9c7380",
+   "mfcc_min": -18.556739807128906,
+   "mfcc_max": 4.986342906951904,
+   "model_out_q": [
+    22,
+    44,
+    -51
+   ],
+   "keyword_prob": 9.280797144128883e-07
+  },
+  "chirp_100_3800hz": {
+   "exercises": "linear sweep across the whole mel range: every filter is exercised",
+   "input_sha256": "303ceb76a239d848556836949f5e00022a02688740450789fc1c1bf309860c34",
+   "mfcc_min": -76.19336700439453,
+   "mfcc_max": 25.680023193359375,
+   "model_out_q": [
+    -24,
+    110,
+    -83
+   ],
+   "keyword_prob": 6.020985576435378e-13
+  },
+  "square_fullscale": {
+   "exercises": "200 Hz square at +32767/-32768: clipping extremes, -32768 -> -1.0",
+   "input_sha256": "3ddf157dc11f4235546df163e77a9816e21378df81cca95754d00c05a3121c79",
+   "mfcc_min": -13.615391731262207,
+   "mfcc_max": 20.99173927307129,
+   "model_out_q": [
+    6,
+    84,
+    -71
+   ],
+   "keyword_prob": 1.5336945602406615e-10
+  },
+  "impulse": {
+   "exercises": "single 20000 spike at sample 8000: pre-emphasis + frame edges + floor",
+   "input_sha256": "d042785a6cea3c83e8e0e9aea4bd47bbba404202cee2049daf5d58e7c4e8862b",
+   "mfcc_min": -87.37696075439453,
+   "mfcc_max": 0.0008865635609254241,
+   "model_out_q": [
+    11,
+    13,
+    -15
+   ],
+   "keyword_prob": 0.009563502855598927
+  },
+  "quiet_noise_8lsb": {
+   "exercises": "uniform noise +-8 LSB: mel energies near LOG_MEL_FLOOR, float32 sensitivity",
+   "input_sha256": "f1eff9b26b40c6464b1aa1e3e41798483cdc302aa03a8867409935731e7e488e",
+   "mfcc_min": -75.67860412597656,
+   "mfcc_max": 2.4243154525756836,
+   "model_out_q": [
+    26,
+    16,
+    -30
+   ],
+   "keyword_prob": 0.00023080295068211854
+  },
+  "speech_gsc_yes": {
+   "exercises": "real speech (Google Speech Commands, 'yes'): what the model actually sees",
+   "input_sha256": "d19540ed5ca22c50691baf73e2f30159a50992dc653b400cf7a975c3e37d8350",
+   "mfcc_min": -59.961360931396484,
+   "mfcc_max": 12.37932300567627,
+   "model_out_q": [
+    -23,
+    58,
+    -34
+   ],
+   "keyword_prob": 1.4954099469832727e-06
+  },
+  "speech_gsc_no": {
+   "exercises": "real speech (Google Speech Commands, 'no')",
+   "input_sha256": "1ffb9d824ca4e6198a327228521bf61d41cc50da85d5ed2df91a4b51ef7f2ce8",
+   "mfcc_min": -50.457862854003906,
+   "mfcc_max": 7.653995037078857,
+   "model_out_q": [
+    -50,
+    51,
+    -13
+   ],
+   "keyword_prob": 8.863865514285862e-05
+  },
+  "go_positive_test_027": {
+   "exercises": "held-out positive (session test): the model MUST fire on this",
+   "input_sha256": "e23f914092d0bdce0e3c60c0391f6d884a79b637b1753f9f61096b7f7ef2c6ae",
+   "mfcc_min": -87.37696075439453,
+   "mfcc_max": 10.047097206115723,
+   "model_out_q": [
+    -51,
+    -5,
+    31
+   ],
+   "keyword_prob": 0.9947662353515625
+  },
+  "nogo_hardneg_test_001": {
+   "exercises": "held-out hard negative (session test): the model must NOT fire on this",
+   "input_sha256": "6da3f3d240d92a23bead05b2838b8947ee7945ed76f0aafcbebdc6ad5b4ff422",
+   "mfcc_min": -87.37696075439453,
+   "mfcc_max": 10.151388168334961,
+   "model_out_q": [
+    -49,
+    13,
+    13
+   ],
+   "keyword_prob": 0.49997031688690186
+  }
+ },
+ "sha256": {
+  "features/kws_mel_filterbank.h": "930d0c5ae9c14945cbea35b0dc44255c0920316dda3431e63ae956ad87d07688",
+  "MANIFEST.md": "a5c29e160e2d075e8cc3fc417a06d4a342d2f84ab39a343585f92679119e365f",
+  "model/model_data.cc": "3e1544c01a5b981c0f3fb5785ec150840ad0dedfa724323e1d16bd8f814f5ef8",
+  "model/model_data.h": "7797cd984cccdc301294358bb2b54e0d84bfd9bf0022f81c9fd6b6a4edba9a5e",
+  "model/model_int8.tflite": "a37deff3edb042562a3253ee4dad614c311710d4a6781dd6437e06438788bb66",
+  "model/quant_params.json": "cfff12f61dbe05aac75c4d4b67fd72e51dc8c39bfa9018e7d8b1abb2ef66a848",
+  "parity/go_nogo_stub.c": "dea2ec813f0312058f3dd59031cd8cb294fc91e19e76c995b129874f19d6deac",
+  "parity/go_nogo_test.c": "4f573e6061aca82b78277a6ca92dd021058e3a9e48ff0ecdc8148ca5fbfc474c",
+  "parity/kws_frontend_constants.h": "891cea8dd253ee9351d94acfcf4c33c9d3bc5b6dcb441dc7f8bdf7b3a54a46e9",
+  "parity/mfcc_reference.c": "124559e4b9cb47c33d9cd416d322c560000fbf5c1140d519abfbedf190ab3373",
+  "parity/parity_test.c": "2135215a63cb8e15104619c861b14330ba910fea2f0437ec834f9ef9f6753af5",
+  "PROTOCOL.md": "c70e364f71e84f0c5870e24b3a54dd3f4a39192687fba58e105898fb2cff3f9d",
+  "test_vectors/kws_parity_vectors.h": "8178e16ff6dc90caa09dbd6f1f0e4aa7a3a4c274f00f11bc25a1b628a86efc42",
+  "test_vectors/vec_chirp_100_3800hz.h": "6add33fb4bd357779f07d56372bf3d59ed97ccfdaf92d123e4bcca1e454f42e9",
+  "test_vectors/vec_go_positive_test_027.h": "67a845d0248e5bc76f1aaef747e0ce8a3f754f3f2c324c356debc7c8fb15e014",
+  "test_vectors/vec_impulse.h": "9daf471b0a83caf7e362b9724196783f0301244bd32dd02b490b8cd62adb7165",
+  "test_vectors/vec_nogo_hardneg_test_001.h": "e15f27392fbdb0de9704b4901d552e304c8f2dc078a268c2d396729c8f6d45f2",
+  "test_vectors/vec_quiet_noise_8lsb.h": "9ddb99ad57b58974ba85ad0d163dbecf74c57a751c4d0272d8436c64b11e697d",
+  "test_vectors/vec_silence.h": "0c0ffc7acce22a25067861ff9ffde33cd0a00a4958a35dff06430892c89ebb94",
+  "test_vectors/vec_speech_gsc_no.h": "1b51cc20679c04082251e0f649ebdb229efa2692bbe8c19205f2b6cac0184923",
+  "test_vectors/vec_speech_gsc_yes.h": "afd96304f10adec211678501152ce9afafe8df38b04dbec380e28b516f132fec",
+  "test_vectors/vec_square_fullscale.h": "92f55843fd58bf422baf29586ceb28e125f1f7e8a8b77c294ad4290adc29f4ae",
+  "test_vectors/vec_tone_440hz.h": "ec4ef5a035c4a2570f243a3da5e66809c8d6d0b714661ded1a48ab2eda23523f",
+  "test_vectors/vec_white_noise.h": "7b5ff69972d5b47958323811064457b9e2c80768a5a713173161baff89a30fac"
+ }
+}

@@ -10,6 +10,7 @@ Implemented in Step 5.
 
 from __future__ import annotations
 
+import argparse
 import os
 import random
 import time
@@ -23,6 +24,18 @@ import dataset
 from model import build_dscnn_s, macs, param_count
 
 RUN_NAME = "nakshatra_mvp_v1"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Train DS-CNN-S for the nakshatra wake word.")
+    parser.add_argument("--run-name", type=str, default=RUN_NAME,
+                         help="checkpoint subfolder under config.CHECKPOINT_DIR (default: %(default)s)")
+    parser.add_argument("--epochs", type=int, default=None,
+                         help="override config.EPOCHS for this run")
+    parser.add_argument("--split-mode", type=str, default="speaker_disjoint",
+                         choices=("random_per_file", "speaker_disjoint"),
+                         help="dataset.make_splits() split mode (default: %(default)s)")
+    return parser.parse_args()
 
 
 def set_seeds(seed: int = config.SEED) -> None:
@@ -127,17 +140,48 @@ def _print_confusion_matrix(cm: np.ndarray, labels: list[str]) -> None:
 
 def main() -> None:
     """Train DS-CNN-S and write the best checkpoint to config.CHECKPOINT_DIR."""
+    args = parse_args()
+    run_name = args.run_name
+
     print(config.summary())
 
     set_seeds()
 
-    run_dir = config.CHECKPOINT_DIR / RUN_NAME
+    run_dir = config.CHECKPOINT_DIR / run_name
     run_dir.mkdir(parents=True, exist_ok=True)
 
     # -- data --
     manifest = dataset.build_manifest()
     # Single-speaker MVP: speaker_disjoint would starve val/test entirely.
-    splits = dataset.make_splits(manifest, split_mode="random_per_file")
+    splits = dataset.make_splits(manifest, split_mode=args.split_mode)
+
+    # -- held-out guard: session "test" must be in no training-time split --
+    held = config.HELDOUT_SESSION
+    rec = config.RECORDINGS_DIR
+    n_pos = sum(1 for p in (rec / "positive").glob("*.wav") if dataset.speaker_id(p) == held)
+    n_hn = sum(1 for p in (rec / "hardneg").glob("*.wav") if dataset.speaker_id(p) == held)
+    n_amb = sum(1 for p in (rec / "ambient").glob("*.wav") if dataset.speaker_id(p) == held)
+    for name in ("train", "val"):
+        leaked = [s for s in splits[name] if dataset.speaker_id(s.path) == held]
+        assert not leaked, f"held-out files leaked into {name}: {leaked[:3]}"
+    assert not any(dataset.speaker_id(p) == held for p in dataset._background_files()), (
+        "held-out ambient is in the augmentation pool")
+    print(f"\nHELD-OUT GUARD: excluded {n_pos + n_hn + n_amb} session-{held!r} files from train/val/augmentation "
+          f"({n_pos} positive, {n_hn} hardneg, {n_amb} ambient); 0 found in train or val")
+    print("\nper-split class counts (unknown = hard_neg + talking + gsc; silence injected in make_dataset):")
+    for name in ("train", "val", "test"):
+        by_src: dict[str, int] = {}
+        for s_ in splits[name]:
+            by_src[s_.source] = by_src.get(s_.source, 0) + 1
+        distinct = {}
+        for s_ in splits[name]:
+            distinct.setdefault(s_.source, set()).add(str(s_.path))
+        kw = by_src.get("positives", 0)
+        print(f"  {name:5s}: keyword={kw} unknown={len(splits[name]) - kw} "
+              f"silence(synthetic)={round(kw * config.SILENCE_PERCENT / 100.0)}  "
+              f"by source (slots/distinct) = "
+              + ", ".join(f"{k}={v}/{len(distinct[k])}" for k, v in sorted(by_src.items())))
+    assert splits["val"], "val split is empty"
     print(
         f"\nsplit sizes: train={len(splits['train'])}, "
         f"val={len(splits['val'])}, test={len(splits['test'])}"
@@ -146,7 +190,6 @@ def main() -> None:
     train_ds = dataset.make_dataset(splits["train"], training=True)
     train_ds = train_ds.map(_add_class_sample_weight)
     val_ds = dataset.make_dataset(splits["val"], training=False)
-    test_ds = dataset.make_dataset(splits["test"], training=False)
 
     # -- model --
     model = build_dscnn_s()
@@ -163,6 +206,7 @@ def main() -> None:
 
     checkpoint_path = run_dir / "float.keras"
     callbacks = [
+        dataset.EpochCallback(),  # per-epoch augmentation seed
         tf.keras.callbacks.LearningRateScheduler(lr_schedule),
         # val_loss, not val_accuracy: with val split heavily skewed toward
         # keyword (10/11), accuracy stays ~flat/uninformative for many
@@ -183,7 +227,7 @@ def main() -> None:
     # in the later epochs by keeping the best val_loss checkpoint, not
     # necessarily the last one.
 
-    epochs = config.EPOCHS
+    epochs = args.epochs if args.epochs is not None else config.EPOCHS
 
     print(f"\nTraining for {epochs} epochs (no early stopping)...\n")
 
@@ -197,31 +241,8 @@ def main() -> None:
     elapsed = time.time() - start
     print(f"\nTraining time: {elapsed:.1f}s")
 
-    # -- test evaluation --
-    print("\n--- Test evaluation ---")
-    test_metrics = model.evaluate(test_ds, return_dict=True)
-    print(f"test loss     : {test_metrics['loss']:.4f}")
-    print(f"test accuracy : {test_metrics['accuracy']:.4f}")
-    print(f"test keyword precision : {test_metrics['keyword_precision']:.4f}")
-    print(f"test keyword recall    : {test_metrics['keyword_recall']:.4f}")
-
-    y_true_batches = []
-    for _, y in test_ds:
-        y_true_batches.append(np.argmax(y.numpy(), axis=-1))
-    y_true = np.concatenate(y_true_batches)
-
-    y_pred_logits = model.predict(test_ds)
-    y_pred = np.argmax(y_pred_logits, axis=-1)
-
-    print("\nPer-class precision/recall/F1:")
-    print(classification_report(
-        y_true, y_pred, labels=list(range(config.NUM_CLASSES)),
-        target_names=config.LABELS, zero_division=0,
-    ))
-
-    cm = confusion_matrix(y_true, y_pred, labels=list(range(config.NUM_CLASSES)))
-    print("Confusion matrix (rows=true, cols=pred):")
-    _print_confusion_matrix(cm, config.LABELS)
+    # The held-out session is never evaluated here: it is scored only by
+    # eval_heldout.py, after training, so nothing in this loop can tune on it.
 
     # -- checkpoint must carry its feature contract with it --
     (run_dir / "config_summary.txt").write_text(config.summary(), encoding="utf-8")

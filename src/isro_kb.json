@@ -1,0 +1,347 @@
+[
+  {
+    "id": "chandrayaan-1",
+    "name": "Chandrayaan-1",
+    "aliases": ["India's first moon mission", "first lunar probe", "Chandrayaan 1", "Chandrayaan one"],
+    "descriptors": ["moon mission", "lunar mission", "first moon mission", "found water on the moon"],
+    "one_line": "India's first mission to the Moon, an orbiter that found evidence of water molecules on the lunar surface.",
+    "key_facts": [
+      "Launched 22 October 2008 on a PSLV-XL (PSLV-C11) from Sriharikota.",
+      "Carried an orbiter plus the Moon Impact Probe, which struck the lunar south pole.",
+      "Found widespread evidence of water/hydroxyl molecules on the Moon.",
+      "Achieved about 95% of its objectives before contact was lost in August 2009."
+    ],
+    "image": null,
+    "launch_date": "2008-10-22",
+    "status": "Mission complete (contact lost August 2009)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "chandrayaan-2",
+    "name": "Chandrayaan-2",
+    "aliases": ["Chandrayaan 2", "Chandrayaan two"],
+    "descriptors": ["moon mission", "lunar mission", "second moon mission", "lander crashed on the moon"],
+    "one_line": "India's second lunar mission, an orbiter-lander-rover combination whose Vikram lander crashed during its final descent.",
+    "key_facts": [
+      "Launched 22 July 2019 on a GSLV Mk III (GSLV Mk III-M1) from Sriharikota.",
+      "Comprised an orbiter, the Vikram lander, and the Pragyan rover.",
+      "Contact with Vikram was lost at about 2 km altitude during the 7 September 2019 landing attempt.",
+      "The orbiter survived and continues to operate in lunar orbit, returning science data."
+    ],
+    "image": null,
+    "launch_date": "2019-07-22",
+    "status": "Orbiter operational; lander/rover lost on landing",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "chandrayaan-3",
+    "name": "Chandrayaan-3",
+    "aliases": ["Chandrayaan 3", "Chandrayaan three", "moon landing mission", "chandra"],
+    "descriptors": ["moon mission", "lunar mission", "moon landing", "south pole landing", "landing on the moon"],
+    "one_line": "India's successful soft-landing mission that made India the fourth country to land on the Moon and the first near the lunar south pole.",
+    "key_facts": [
+      "Launched 14 July 2023 on a LVM3 (LVM3-M4) from Sriharikota.",
+      "Vikram lander touched down on 23 August 2023, now marked as National Space Day.",
+      "Made India the 4th nation to soft-land on the Moon and the first to land near the south pole.",
+      "Carried the Pragyan rover, which explored the landing site before both went into sleep mode at lunar night."
+    ],
+    "image": "chandrayaan-3.jpg",
+    "launch_date": "2023-07-14",
+    "status": "Mission complete (landed successfully)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "gaganyaan",
+    "name": "Gaganyaan",
+    "aliases": ["Indian human spaceflight mission", "India's astronaut mission", "Bharatiya Antariksh Station program"],
+    "descriptors": ["human spaceflight", "crewed mission", "sending astronauts", "indian astronauts"],
+    "one_line": "ISRO's human spaceflight programme, aiming to send Indian astronauts to low Earth orbit aboard an Indian-built crew module.",
+    "key_facts": [
+      "Uncrewed test flights (Gaganyaan-1 and onward) are targeted before any crewed launch.",
+      "The first crewed flight will follow the uncrewed test flights; its launch date has not been finalised.",
+      "The programme has already flown a Test Vehicle Abort Mission (TV-D1, October 2023) to validate the crew escape system.",
+      "Will also feed into India's planned Bharatiya Antariksh Station (Indian space station)."
+    ],
+    "image": "gaganyaan.jpg",
+    "launch_date": null,
+    "launch_note": "Targeted, date not finalised",
+    "_notes": ["Crewed flight has slipped repeatedly; last seen targeted ~2027. Re-check before quoting a date."],
+    "status": "In development (uncrewed test flights in progress; crewed flight not yet launched)",
+    "org_unit": "VSSC Thiruvananthapuram"
+  },
+  {
+    "id": "mangalyaan",
+    "name": "Mangalyaan (Mars Orbiter Mission)",
+    "aliases": ["Mars Orbiter Mission", "MOM", "Mars mission", "India's Mars mission", "mangalore"],
+    "descriptors": ["mars mission", "mars orbiter", "mission to mars", "red planet mission"],
+    "one_line": "India's first interplanetary mission, which put a spacecraft into Mars orbit on its very first attempt.",
+    "key_facts": [
+      "Launched 5 November 2013 on a PSLV-XL (PSLV-C25) from Sriharikota.",
+      "Entered Mars orbit on 24 September 2014, making ISRO the fourth space agency to reach Mars.",
+      "India became the first country to succeed at Mars on its first attempt.",
+      "Operated far beyond its planned 6-month life; lost contact during an eclipse in April 2022 after propellant exhaustion, with ISRO declaring the mission non-recoverable around October 2022."
+    ],
+    "image": "mangalyaan.jpg",
+    "launch_date": "2013-11-05",
+    "status": "Mission complete (lost contact April 2022; declared non-recoverable October 2022)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "aditya-l1",
+    "name": "Aditya-L1",
+    "aliases": ["Aditya L1", "India's solar mission", "sun mission"],
+    "descriptors": ["sun mission", "solar mission", "study the sun", "solar observatory"],
+    "one_line": "India's first dedicated mission to study the Sun, stationed in a halo orbit around the Sun-Earth L1 point.",
+    "key_facts": [
+      "Launched 2 September 2023 on a PSLV-XL (PSLV-C57) from Sriharikota.",
+      "Inserted into its halo orbit around the Sun-Earth L1 point on 6 January 2024.",
+      "Carries seven payloads studying the photosphere, chromosphere, and corona plus solar wind.",
+      "L1 is about 1.5 million km from Earth; the halo orbit takes about 178 days to complete."
+    ],
+    "image": null,
+    "launch_date": "2023-09-02",
+    "status": "Operational",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "pslv",
+    "name": "PSLV",
+    "aliases": ["Polar Satellite Launch Vehicle", "PSLV rocket", "ISRO's workhorse rocket", "p salvi"],
+    "descriptors": ["workhorse rocket", "satellite launch vehicle", "satellite launcher", "isro's workhorse"],
+    "one_line": "ISRO's four-stage workhorse launch vehicle, used for the large majority of India's satellite and interplanetary launches.",
+    "key_facts": [
+      "First flew as PSLV-D1 on 20 September 1993 (that flight failed); first success was PSLV-D2 on 15 October 1994.",
+      "A four-stage rocket alternating solid and liquid propulsion stages.",
+      "Launched Chandrayaan-1, Mangalyaan, and Aditya-L1, among many other missions.",
+      "Nicknamed ISRO's 'workhorse' for its long, reliable launch record."
+    ],
+    "image": "pslv.jpg",
+    "launch_date": "1993-09-20",
+    "status": "Operational",
+    "org_unit": "VSSC Thiruvananthapuram"
+  },
+  {
+    "id": "gslv-mk3",
+    "name": "GSLV Mk-III / LVM3",
+    "aliases": ["LVM3", "GSLV Mark 3", "LVM 3", "GSLV Mk III", "GSLV MkIII"],
+    "descriptors": ["heavy lift rocket", "heavy launch vehicle", "most powerful rocket", "biggest rocket"],
+    "one_line": "ISRO's most powerful operational launch vehicle, now called LVM3, used for heavy satellites and crewed Gaganyaan flights.",
+    "key_facts": [
+      "First orbital test launch on 5 June 2017 from Sriharikota, after a sub-orbital test in December 2014.",
+      "Three-stage vehicle combining two solid strap-on boosters, a liquid core, and a cryogenic upper stage.",
+      "ISRO's heaviest launcher, able to place about 4,000 kg into geostationary transfer orbit.",
+      "Launched Chandrayaan-2, Chandrayaan-3, and is the designated launcher for crewed Gaganyaan flights."
+    ],
+    "image": "lvm3.jpg",
+    "launch_date": "2017-06-05",
+    "_notes": ["Dropped the LEO payload figure (10,000 kg was unverified; ISRO has also quoted ~8,000 kg). GTO ~4,000 kg kept."],
+    "status": "Operational",
+    "org_unit": "VSSC Thiruvananthapuram"
+  },
+  {
+    "id": "navic",
+    "name": "NavIC",
+    "aliases": ["IRNSS", "Indian Regional Navigation Satellite System", "Navigation with Indian Constellation"],
+    "descriptors": ["indian gps", "satellite navigation", "navigation satellites", "gps system"],
+    "one_line": "India's own regional satellite navigation system, providing positioning services over India and the surrounding region.",
+    "key_facts": [
+      "Originally built as IRNSS; renamed NavIC (Navigation with Indian Constellation) in 2016.",
+      "Constellation of 7 satellites launched between 2013 and 2016, all via PSLV.",
+      "Covers India and a region extending about 1,500 km beyond its borders.",
+      "Offers a civilian Standard Positioning Service and a Restricted Service for strategic users."
+    ],
+    "image": "navic.jpg",
+    "launch_date": "2013-07-01",
+    "status": "Operational",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "risat",
+    "name": "RISAT",
+    "aliases": ["Radar Imaging Satellite", "RISAT series"],
+    "descriptors": ["radar satellite", "radar imaging satellite", "all weather satellite", "satellite that sees through clouds"],
+    "one_line": "ISRO's series of radar imaging satellites that can observe Earth day or night and through cloud cover.",
+    "key_facts": [
+      "RISAT-2 launched April 2009 as India's first satellite carrying a synthetic aperture radar (SAR).",
+      "RISAT-1, India's first indigenously developed radar imaging satellite, launched April 2012.",
+      "Uses synthetic aperture radar for all-weather, day-and-night Earth observation.",
+      "Used for disaster management, agriculture, and border surveillance applications."
+    ],
+    "image": null,
+    "launch_date": "2009-04-20",
+    "status": "Operational (multiple satellites in the series)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "vikram-lander",
+    "name": "Vikram lander",
+    "aliases": ["Vikram", "the lander", "moon lander"],
+    "descriptors": ["moon lander", "lunar lander", "lander on the moon"],
+    "one_line": "The lunar lander named after Vikram Sarabhai that flew on Chandrayaan-2 and successfully soft-landed on Chandrayaan-3.",
+    "key_facts": [
+      "Named after Vikram Sarabhai, the founder of India's space programme.",
+      "Flew twice: crashed during descent on Chandrayaan-2 (2019); soft-landed successfully on Chandrayaan-3 (23 August 2023).",
+      "Landed near the Moon's south pole, a first for any country.",
+      "Carried the Pragyan rover down to the lunar surface and deployed it via a ramp."
+    ],
+    "image": "vikram-lander.jpg",
+    "launch_date": "2023-07-14",
+    "status": "Mission complete (Chandrayaan-3 landing successful)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "pragyan-rover",
+    "name": "Pragyan rover",
+    "aliases": ["Pragyan", "the rover", "moon rover"],
+    "descriptors": ["moon rover", "lunar rover", "six wheeled rover", "rover on the moon"],
+    "one_line": "The small six-wheeled rover that explored the lunar surface near the south pole after the Chandrayaan-3 landing.",
+    "key_facts": [
+      "Name means 'wisdom' in Sanskrit; carried inside the Vikram lander.",
+      "Deployed onto the lunar surface after the Chandrayaan-3 landing on 23 August 2023.",
+      "Carried instruments to study the chemical and elemental composition of the lunar soil.",
+      "Designed to operate for one lunar day (about 14 Earth days) before going into sleep mode."
+    ],
+    "image": null,
+    "launch_date": "2023-07-14",
+    "status": "Mission complete (operations ended at lunar nightfall, September 2023)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "sdsc-sriharikota",
+    "name": "SDSC Sriharikota",
+    "aliases": ["Satish Dhawan Space Centre", "Sriharikota", "SHAR", "India's spaceport", "the launch site"],
+    "descriptors": ["launch site", "spaceport", "rocket launch site", "launch centre"],
+    "one_line": "ISRO's primary launch site, on a barrier island on India's east coast, from which nearly all Indian orbital launches take place.",
+    "key_facts": [
+      "First launch from the site was the RH-125 Rohini-series sounding rocket on 9 October 1971.",
+      "Renamed Satish Dhawan Space Centre in 2002, after former ISRO chairman Satish Dhawan.",
+      "Located on Sriharikota island, Andhra Pradesh, between Pulicat Lake and the Bay of Bengal.",
+      "Chosen for its near-equatorial location and large uninhabited safety zone for eastward launches."
+    ],
+    "image": null,
+    "launch_date": null,
+    "status": "Operational",
+    "org_unit": null
+  },
+  {
+    "id": "vssc-thiruvananthapuram",
+    "name": "VSSC Thiruvananthapuram",
+    "aliases": ["Vikram Sarabhai Space Centre", "VSSC", "Thumba"],
+    "descriptors": ["rocket research centre", "launch vehicle centre", "rocket design centre"],
+    "one_line": "ISRO's lead centre for launch vehicle and rocket technology, headquartered in Thiruvananthapuram, Kerala.",
+    "key_facts": [
+      "Traces its origins to the Thumba Equatorial Rocket Launching Station, established in 1962.",
+      "Formally consolidated and named after Vikram Sarabhai in 1972, under the new Department of Space.",
+      "Thumba was chosen for its proximity to the geomagnetic equator, ideal for upper-atmosphere research.",
+      "Lead centre for developing India's launch vehicles, including SLV-3, ASLV, PSLV, and GSLV."
+    ],
+    "image": null,
+    "launch_date": null,
+    "status": "Operational",
+    "org_unit": null
+  },
+  {
+    "id": "istrac-bengaluru",
+    "name": "ISTRAC Bengaluru",
+    "aliases": ["ISTRAC", "ISRO Telemetry Tracking and Command Network"],
+    "descriptors": ["satellite tracking network", "tracking station", "ground station network", "satellite control centre"],
+    "one_line": "ISRO's ground segment network, responsible for tracking and commanding satellites and launch vehicles from Bengaluru.",
+    "key_facts": [
+      "Established on 6 September 1976.",
+      "Headquartered in Bengaluru, with a network of ground stations across India and abroad (including Mauritius, Brunei, and Indonesia).",
+      "Provides telemetry, tracking, and command (TTC) support through a satellite's entire mission life.",
+      "Also handles orbit determination, attitude control support, and network coordination for ISRO missions."
+    ],
+    "image": null,
+    "launch_date": null,
+    "status": "Operational",
+    "org_unit": null
+  },
+  {
+    "id": "nisar",
+    "name": "NISAR",
+    "aliases": ["NASA-ISRO SAR mission", "NASA ISRO Synthetic Aperture Radar"],
+    "descriptors": ["nasa isro satellite", "joint satellite with nasa", "joint mission with nasa"],
+    "one_line": "A joint NASA-ISRO Earth observation satellite carrying dual-frequency radar to track changes in Earth's land and ice surfaces.",
+    "key_facts": [
+      "Launched 30 July 2025 on ISRO's GSLV-F16 from Sriharikota.",
+      "First satellite to carry both an L-band and an S-band synthetic aperture radar.",
+      "Scans nearly all of Earth's land and ice surfaces every 12 days.",
+      "Tracks glacier flow, earthquake and volcano dynamics, and ecosystem changes."
+    ],
+    "image": null,
+    "launch_date": "2025-07-30",
+    "status": "Operational",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru (joint mission with NASA/JPL)"
+  },
+  {
+    "id": "aryabhata",
+    "name": "Aryabhata",
+    "aliases": ["India's first satellite", "Aryabhatta"],
+    "descriptors": ["first satellite", "india's first satellite", "first indian satellite"],
+    "one_line": "India's first satellite, named after the ancient astronomer, launched with Soviet assistance in 1975.",
+    "key_facts": [
+      "Launched 19 April 1975 on a Soviet Kosmos-3M rocket from Kapustin Yar.",
+      "Made India the 11th nation to place a satellite in orbit.",
+      "Carried instruments for X-ray astronomy, aeronomy, and solar physics experiments.",
+      "A power system failure ended most experiments within days, though the satellite itself orbited for years."
+    ],
+    "image": null,
+    "launch_date": "1975-04-19",
+    "status": "Mission complete (decayed from orbit in February 1992)",
+    "org_unit": "ISRO Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "insat",
+    "name": "INSAT",
+    "aliases": ["Indian National Satellite System", "INSAT series"],
+    "descriptors": ["communication satellite", "broadcast satellite", "weather satellite", "tv satellite"],
+    "one_line": "India's long-running series of multipurpose geostationary satellites for telecommunications, broadcasting, and weather monitoring.",
+    "key_facts": [
+      "First satellite, INSAT-1A, launched 10 April 1982 (it was later abandoned in 1983 due to technical failures).",
+      "INSAT-1B, launched in 1983, became the first fully operational satellite in the series.",
+      "Combines telecommunications, television broadcasting, meteorology, and search-and-rescue payloads on one platform.",
+      "One of the largest domestic communication satellite systems in the Asia-Pacific region."
+    ],
+    "image": null,
+    "launch_date": "1982-04-10",
+    "status": "Operational (multiple generations of satellites in the series)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "cartosat",
+    "name": "Cartosat",
+    "aliases": ["Cartosat series", "mapping satellite"],
+    "descriptors": ["mapping satellite", "earth mapping satellite", "satellite for maps", "cartography satellite"],
+    "one_line": "ISRO's series of high-resolution Earth observation satellites used mainly for cartography and mapping.",
+    "key_facts": [
+      "First satellite of the series, Cartosat-1, launched 5 May 2005 on PSLV-C6 from Sriharikota.",
+      "Part of India's remote sensing programme, used for large-scale and topographic mapping.",
+      "Provides stereoscopic imagery, useful for generating terrain and elevation data.",
+      "The series has continued across multiple generations for both civilian and defence applications."
+    ],
+    "image": null,
+    "launch_date": "2005-05-05",
+    "status": "Operational (multiple satellites in the series)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  },
+  {
+    "id": "shukrayaan",
+    "name": "Shukrayaan",
+    "aliases": ["Shukrayaan-1", "Venus Orbiter Mission", "India's Venus mission"],
+    "descriptors": ["venus mission", "venus orbiter", "mission to venus"],
+    "one_line": "ISRO's planned orbiter mission to Venus, India's first mission to explore an inner planet.",
+    "key_facts": [
+      "Government-approved Venus Orbiter Mission; the launch date has not been finalised.",
+      "Planned to launch on an LVM3 rocket carrying a suite of scientific instruments.",
+      "Will use aerobraking to lower its orbit around Venus after arrival.",
+      "Intended to study Venus's atmosphere, surface, and geological activity."
+    ],
+    "image": null,
+    "launch_date": null,
+    "launch_note": "Targeted, date not finalised",
+    "_notes": ["Launch last seen targeted ~2028 and has shifted before; instrument count (~19) unconfirmed."],
+    "status": "In development (not yet launched)",
+    "org_unit": "U R Rao Satellite Centre, Bengaluru"
+  }
+]

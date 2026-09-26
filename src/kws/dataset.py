@@ -18,6 +18,7 @@ Implemented in Step 3.
 from __future__ import annotations
 
 import hashlib
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -37,22 +38,33 @@ class Sample:
     path: Path
     label_index: int      # index into config.LABELS
     speaker: str          # used by which_set(); "" for synthetic silence
-    source: str           # "positives" | "hard_neg" | "gsc" | "background"
+    source: str           # "positives" | "hard_neg" | "talking" | "gsc" | "background"
+
+
+# record_session.py names files <label>_<mic>_<session>_<n>.wav
+_RECORDING_RE = re.compile(r"^(?:positive|hardneg|ambient|talking)_[a-z0-9]+_([a-z0-9]+)_\d+$", re.IGNORECASE)
 
 
 def speaker_id(path: Path) -> str:
-    """Extract the speaker id from a filename.
+    """Extract the split-grouping key from a filename.
 
-    Convention (shared by our own recordings and GSC): the speaker is
-    everything before the first underscore --
-        '<speaker>_nohash_<n>.wav'   (positives, GSC)
-        '<speaker>_<word>_<n>.wav'   (hard negatives, named after the
-                                      confusable word they contain)
+    Two conventions:
+      - our recordings, '<label>_<mic>_<session>_<n>.wav' (label is positive /
+        hardneg / ambient): keyed on the SESSION, e.g. 'positive_laptop_s03_017'
+        -> 's03'. There is one real speaker, so session is the unit that keeps
+        near-duplicate takes (same distance, room, mic) out of both train and
+        val/test.
+      - GSC-style, everything before the first underscore:
+            '<speaker>_nohash_<n>.wav'
+            '<speaker>_<word>_<n>.wav'
 
     Files with no underscore (synthetic silence, or anything without a clear
     speaker) return "" so which_set() routes them straight to 'train'.
     """
     stem = path.stem
+    m = _RECORDING_RE.match(stem)
+    if m:
+        return m.group(1).lower()
     if "_" not in stem:
         return ""
     return stem.split("_", 1)[0]
@@ -74,6 +86,8 @@ def which_set(speaker: str) -> str:
     """
     if speaker == "":
         return "train"
+    if speaker in config.SESSION_SPLIT:
+        return config.SESSION_SPLIT[speaker]  # explicit, auditable (config.SESSION_SPLIT)
 
     digest = hashlib.sha1(speaker.encode("utf-8")).hexdigest()
     # First 8 hex chars (32 bits) is plenty of entropy for a mod-100 bucket;
@@ -163,21 +177,41 @@ def build_manifest() -> list[Sample]:
     """
     manifest: list[Sample] = []
 
-    for path in _wav_files(config.POSITIVES_DIR):
-        manifest.append(Sample(
-            path=path,
-            label_index=config.KEYWORD_INDEX,
-            speaker=speaker_id(path),
-            source="positives",
-        ))
-
-    for path in _wav_files(config.HARD_NEG_DIR):
-        manifest.append(Sample(
-            path=path,
-            label_index=config.UNKNOWN_INDEX,
-            speaker=speaker_id(path),
-            source="hard_neg",
-        ))
+    # (directory, label, source) -- new demo-chain recordings first, legacy
+    # Audacity-chain data only when config.USE_LEGACY_DATA is set.
+    dirs = []
+    if config.USE_RECORDINGS:
+        for sub, label_index, source in (
+            ("positive", config.KEYWORD_INDEX, "positives"),
+            ("hardneg", config.UNKNOWN_INDEX, "hard_neg"),
+        ):
+            raw = _wav_files(config.RECORDINGS_DIR / sub)
+            if config.USE_TRIMMED:
+                # trimmed copy for training sessions; held-out stays raw.
+                trimmed = {p.name for p in _wav_files(config.TRIMMED_DIR / sub)}
+                raw = [config.TRIMMED_DIR / sub / p.name if p.name in trimmed else p
+                       for p in raw
+                       if p.name in trimmed or speaker_id(p) == config.HELDOUT_SESSION]
+            for path in raw:
+                manifest.append(Sample(path=path, label_index=label_index,
+                                       speaker=speaker_id(path), source=source))
+        if config.USE_TALKING_UNKNOWN:
+            for path in _wav_files(config.TALKING_DIR):
+                manifest.append(Sample(path=path, label_index=config.UNKNOWN_INDEX,
+                                       speaker=speaker_id(path), source="talking"))
+    if config.USE_LEGACY_DATA:
+        dirs += [
+            (config.POSITIVES_DIR, config.KEYWORD_INDEX, "positives"),
+            (config.HARD_NEG_DIR, config.UNKNOWN_INDEX, "hard_neg"),
+        ]
+    for directory, label_index, source in dirs:
+        for path in _wav_files(directory):
+            manifest.append(Sample(
+                path=path,
+                label_index=label_index,
+                speaker=speaker_id(path),
+                source=source,
+            ))
 
     # GSC ships as <word>/<speaker>_nohash_<n>.wav -- one subdirectory per
     # word. May not be downloaded yet, so a missing/empty gsc/ is fine.
@@ -258,23 +292,71 @@ def make_splits(
     else:
         splits = {"train": [], "val": [], "test": []}
         for sample in manifest:
-            splits[which_set(sample.speaker)].append(sample)
+            if sample.speaker in config.SESSION_SPLIT:
+                where = config.SESSION_SPLIT[sample.speaker]
+            elif sample.source == "gsc":
+                where = which_set(sample.speaker)
+                if where == "test":
+                    continue  # test is the held-out recording session only
+            else:
+                where = "train"  # our own recordings: explicit map, default train
+            splits[where].append(sample)
 
-    # Enforce unknown quota relative to keyword count, per split.
+    # Enforce unknown quota relative to keyword count, per split -- composed
+    # deliberately (stratified by source) rather than drawn uniformly from
+    # the combined pool. hard_neg is always fully included and oversampled
+    # up to config.HARD_NEG_SHARE of the quota; GSC fills the rest. A
+    # uniform draw across hard_neg+GSC starves hard_neg to statistical zero
+    # (it's 0.019% of the combined pool) -- see HARD_NEG_SHARE in config.py.
+    print("\nunknown quota composition (hard_neg guaranteed + oversampled, GSC fills the rest):")
     for name, samples in splits.items():
         keyword_count = sum(1 for s in samples if s.label_index == config.KEYWORD_INDEX)
         unknown_quota = round(keyword_count * config.UNKNOWN_PERCENT / 100.0)
 
-        unknowns = [s for s in samples if s.label_index == config.UNKNOWN_INDEX]
+        hard_neg = [s for s in samples if s.source == "hard_neg"]
+        gsc = [s for s in samples if s.source == "gsc"]
+        talking = [s for s in samples if s.source == "talking"]
         others = [s for s in samples if s.label_index != config.UNKNOWN_INDEX]
 
-        if len(unknowns) > unknown_quota:
-            keep_idx = rng.choice(len(unknowns), size=unknown_quota, replace=False)
-            unknowns = [unknowns[i] for i in sorted(keep_idx)]
+        # talking-no-keyword windows: every window at least once, oversampled
+        # up to config.TALKING_SHARE of the quota.
+        talking_target = max(round(unknown_quota * config.TALKING_SHARE), len(talking))
+        if talking and talking_target > 0:
+            reps_t = -(-talking_target // len(talking))
+            talking_over = (talking * reps_t)[:talking_target]
+        else:
+            talking_over = []
 
-        splits[name] = others + unknowns
+        # Never subsample hard_neg away; oversample it up to its target
+        # share (at least 1x each, even if the quota is too small for the
+        # share to reach that on its own).
+        hard_neg_target = max(round(unknown_quota * config.HARD_NEG_SHARE), len(hard_neg))
+        if hard_neg and hard_neg_target > 0:
+            reps = -(-hard_neg_target // len(hard_neg))  # ceil division
+            hard_neg_oversampled = (hard_neg * reps)[:hard_neg_target]
+        else:
+            hard_neg_oversampled = []
 
-    print("silence samples are injected per split in make_dataset() from data/background/")
+        gsc_target = max(unknown_quota - len(hard_neg_oversampled) - len(talking_over), 0)
+        if len(gsc) > gsc_target:
+            keep_idx = rng.choice(len(gsc), size=gsc_target, replace=False)
+            gsc_selected = [gsc[i] for i in sorted(keep_idx)]
+        else:
+            gsc_selected = gsc
+
+        splits[name] = others + hard_neg_oversampled + talking_over + gsc_selected
+
+        total_unknown = len(hard_neg_oversampled) + len(talking_over) + len(gsc_selected)
+        hard_neg_pct = 100.0 * len(hard_neg_oversampled) / total_unknown if total_unknown else 0.0
+        print(
+            f"  {name:5s}: unknown_quota={unknown_quota}  "
+            f"hard_neg={len(hard_neg)} distinct -> {len(hard_neg_oversampled)} oversampled  "
+            f"talking={len(talking)} distinct -> {len(talking_over)}  "
+            f"gsc={len(gsc_selected)}  "
+            f"(hard_neg = {hard_neg_pct:.1f}% of unknown)"
+        )
+
+    print("\nsilence samples are injected per split in make_dataset() from data/background/")
 
     print("\nmake_splits summary:")
     for name in ("train", "val", "test"):
@@ -300,18 +382,33 @@ def _background_files() -> list[Path]:
     """
     global _BACKGROUND_FILES
     if _BACKGROUND_FILES is None:
-        _BACKGROUND_FILES = _wav_files(config.BACKGROUND_DIR)
+        files = _wav_files(config.BACKGROUND_DIR)
+        if config.USE_RECORDINGS:
+            # Held-out ambient (session "test") must not leak into training noise/silence.
+            files += [p for p in _wav_files(config.RECORDINGS_DIR / "ambient")
+                      if speaker_id(p) != config.HELDOUT_SESSION]
+        _BACKGROUND_FILES = files
     return _BACKGROUND_FILES
 
 
-def random_background(rng: np.random.Generator) -> np.ndarray:
+def _silence_files() -> list[Path]:
+    """Pool for the synthetic *silence* class: like _background_files() but
+    without the talking recordings -- those are labelled unknown, and the same
+    audio must not also be a silence example."""
+    talking_sessions = {speaker_id(p) for p in _wav_files(config.TALKING_DIR)}
+    return [p for p in _background_files()
+            if not (p.parent == config.RECORDINGS_DIR / "ambient"
+                    and speaker_id(p) in talking_sessions)]
+
+
+def random_background(rng: np.random.Generator, silence: bool = False) -> np.ndarray:
     """Random config.CLIP_SAMPLES-long excerpt from data/background/.
 
     We don't have real background recordings for the single-speaker MVP yet,
     so an empty/missing data/background/ returns silence (all zeros) instead
     of raising -- training must still run, just without noise mixing.
     """
-    files = _background_files()
+    files = _silence_files() if silence else _background_files()
     if not files:
         return np.zeros(config.CLIP_SAMPLES, dtype=np.float32)
 
@@ -387,26 +484,46 @@ def _samples_to_pcm16(samples: np.ndarray) -> np.ndarray:
     return np.clip(np.round(samples * 32768.0), -32768, 32767).astype(np.int16)
 
 
+# Current training epoch, read by every tf.data map call. Updated by
+# EpochCallback (add it to model.fit callbacks) so augmentation differs per epoch.
+_EPOCH = tf.Variable(0, dtype=tf.int64, trainable=False, name="dataset_epoch")
+
+
+def set_epoch(epoch: int) -> None:
+    _EPOCH.assign(int(epoch))
+
+
+class EpochCallback(tf.keras.callbacks.Callback):
+    """Feeds the epoch number into the augmentation seed."""
+
+    def on_epoch_begin(self, epoch, logs=None):
+        set_epoch(epoch)
+
+
 _SILENCE_SENTINEL = "__silence__"  # Sample.path placeholder for injected silence
 
 
 def _load_features_and_label(
-    path: bytes, label_index: int, index: int, training: bool,
+    path: bytes, label_index: int, index: int, epoch: int, training: bool,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Runs inside tf.numpy_function -- everything here is plain numpy."""
     path_str = path.decode("utf-8")
 
-    # A fresh Generator per call: cheap, reproducible given (SEED, index), and
-    # safe under tf.data's parallel map (no shared mutable RNG state that
-    # concurrent calls could corrupt). Used for the background pick below
-    # (silence samples) and/or augmentation -- same seed for both, so a given
-    # dataset "slot" is fully deterministic run to run.
-    rng = np.random.default_rng([config.SEED, int(index)])
+    # A fresh Generator per call: cheap, reproducible given (SEED, epoch,
+    # index), and safe under tf.data's parallel map (no shared mutable RNG
+    # state that concurrent calls could corrupt). Used for the background pick
+    # below (silence samples) and/or augmentation -- same seed for both, so a
+    # given dataset "slot" in a given epoch is fully deterministic run to run.
+    # Training seeds include the epoch so each clip gets fresh noise / shift /
+    # speed / gain every epoch. Eval keeps the epoch out of the seed: its
+    # silence clips must be identical every evaluation.
+    seed = [config.SEED, int(epoch), int(index)] if training else [config.SEED, int(index)]
+    rng = np.random.default_rng(seed)
 
     if path_str == _SILENCE_SENTINEL:
         # Deterministic even when training=False: val/test must inject the
         # same silence clip every evaluation, not a fresh random one.
-        clip = random_background(rng)
+        clip = random_background(rng, silence=True)
     else:
         clip = fit_to_clip(load_wav(Path(path_str)))
 
@@ -463,8 +580,8 @@ def make_dataset(split: list[Sample], training: bool) -> tf.data.Dataset:
 
     def _map_fn(path, label_index, index):
         feats, label = tf.numpy_function(
-            func=lambda p, l, i: _load_features_and_label(p, l, i, training),
-            inp=[path, label_index, index],
+            func=lambda p, l, i, e: _load_features_and_label(p, l, i, e, training),
+            inp=[path, label_index, index, _EPOCH],
             Tout=(tf.float32, tf.float32),
         )
         feats.set_shape(config.FEATURE_SHAPE + (1,))

@@ -26,6 +26,7 @@ Implemented in Step 7.
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -40,6 +41,13 @@ import dataset
 import features
 
 RUN_NAME = "nakshatra_mvp_v1"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Streaming DET-curve evaluation.")
+    parser.add_argument("--run-name", type=str, default=RUN_NAME,
+                         help="checkpoint subfolder under config.CHECKPOINT_DIR (default: %(default)s)")
+    return parser.parse_args()
 
 
 def _softmax(logits: np.ndarray) -> np.ndarray:
@@ -426,6 +434,10 @@ def _spans_to_hop_intervals(
 
 
 def main() -> None:
+    global RUN_NAME
+    args = parse_args()
+    RUN_NAME = args.run_name
+
     print(config.summary())
     print(
         "\n[!] Background stream for this run mixes the real ~10-minute "
